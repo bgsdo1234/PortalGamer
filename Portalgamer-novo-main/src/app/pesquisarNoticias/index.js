@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TextInput, StyleSheet, FlatList, Text} from 'react-native'
+import { View, TextInput, StyleSheet, FlatList, Text, ScrollView} from 'react-native'
 import { Card, Title, IconButton } from 'react-native-paper'
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
@@ -60,13 +60,47 @@ export default function PesquisarNoticias() {
             />
 
             </View>
+            <ScrollView >
             <FlatList 
                  data={noticias}
                  keyExtractor={(item) => item.id.toString()}
                  renderItem={({ item }) => (
-                    <Text>{item.Nome}</Text>
+                    <View>
+
+                        <Card 
+                        style={estilos.Card}
+                        elevation={0}>
+
+                            <View style={estilos.CardContainer}>
+
+                                <Card style={{width: 75, height: 75}}>
+                                    <Card.Cover  
+                                    source={{ uri: item.ImagemNoticia }}
+                                    style={estilos.imagemNoticia}
+                                    />
+                                </Card>
+
+                                <Card 
+                                style={{width: '48%', backgroundColor: '#dbeeff', flexDirection: 'row'}}
+                                elevation={0}
+                                onPress={() => navigation.navigate('DetalhesNoticias', {id: item.id})}>
+                                    <Title
+                                    style={estilos.textTitulo}
+                                    >{item.NomeNoticia}
+                                    </Title>
+                                </Card>
+                                <Title style={{marginTop: 32, marginLeft: 50, fontWeight: 'bold', fontSize: 10}}> 
+                                    {item.DataDeLancamento}
+                                </Title>
+
+                            </View>
+
+                        </Card>
+
+                    </View>
                  )}
             />
+            </ScrollView>
         </View>
     )
 }
@@ -86,41 +120,29 @@ const estilos = StyleSheet.create({
         borderColor: 'white',
         color: 'white'
       },
-    card: {
-        height: 70,
-        width: '95%',
-        marginHorizontal: 7,
-        backgroundColor: '#f5faff',
-        marginVertical: 7,
-        borderWidth: 0,
-        borderColor: 'transparent',
-        elevation: 0,
-    },
-    capaDoJogo: {
-        height:70,
-        width: 70   
-    },
-    tituloDoJogo: {
-        fontSize: 12,
+      Card: {
+        marginVertical: 2.5,
+        borderBottomWidth: 2,
+        borderRadius: 0,
+        paddingBottom: 5,
+        borderColor: '#6587a6',
+        backgroundColor: null,
+        maxWidth: '100%'
+      },
+      CardContainer: {
         flexDirection: 'row',
-        fontWeight: 'bold',
-        marginStart: 5
-    },
-    studioDoJogo: {
-        fontSize: 12,
-        flexDirection: 'row',
-        fontWeight: 'bold',
-        marginStart: 5,
-    },
-    textTamanhoDoJogo: {
-        fontSize: 12,
-        flexDirection: 'row',
-        fontWeight: 'bold',
-        alignItems: 'center',
-        marginBottom: 7
-    },
-    buttonPesquisar: {
-        size: 9,
-        marginTop: 13,
-    }
+        backgroundColor: '#dbeeff',
+        paddingVertical: 5,
+        borderTopLeftRadius: 17,
+        borderBottomLeftRadius: 17,
+      },
+      imagemNoticia: {
+        width: '100%',
+        height: '100%'
+      },
+      textTitulo: {
+        fontWeight: 'bold',  
+        marginLeft: 10,
+        fontSize: 10
+      }
 })

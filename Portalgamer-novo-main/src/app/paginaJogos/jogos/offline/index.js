@@ -25,7 +25,7 @@ export default function JogosOffline({ navigation }) {
 
   return (
     <ScrollView>
-      <View style={{ margin: 10, marginTop: 30, borderRadius: 5 }}>
+      <View style={{ margin: 10, marginTop: 10, borderRadius: 5 }}>
         <Text
         style={estilos.tituloAcao}
         >Jogos Off-line:</Text>
@@ -58,14 +58,13 @@ const estilos= StyleSheet.create ({
     Card: {
         height: 160,
         width: 100,
-        marginHorizontal: 5,
         borderRadius: 10,
         backgroundColor: 'deefff',
         
     },
     CapaDoJogo: {
-        height:100,
-        width: 100,
+        height:90,
+        width: 90,
     },
     tituloJogo: {
       fontSize: 12,

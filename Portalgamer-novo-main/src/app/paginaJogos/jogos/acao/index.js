@@ -25,7 +25,7 @@ export default function JogosScreen ({ navigation }) {
 
   return (
     <View>
-      <View style={{ margin: 10, marginTop: 30, borderRadius: 5 }}>
+      <View style={{ margin: 10, marginTop: 15, borderRadius: 5 }}>
         <Text
         style={estilos.tituloAcao}
         >Jogos de Ação:</Text>
@@ -59,13 +59,11 @@ const estilos= StyleSheet.create ({
     Card: {
         height: 130,
         width: 100,
-        marginHorizontal: 5,
         borderRadius: 10,
-        
     },
     CapaDoJogo: {
-        height:100,
-        width: 100,
+        height:90,
+        width: 90,
     },
     tituloJogo: {
       fontSize: 12,
